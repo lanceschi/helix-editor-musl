@@ -17,7 +17,7 @@ RUN \
 
 FROM alpine:3.15.0
 
-ARG VERSION
+ARG VERSION='v0.6.0'
 ENV PATH=/helix-${VERSION}:"$PATH"
 WORKDIR "/helix-${VERSION}"
 
