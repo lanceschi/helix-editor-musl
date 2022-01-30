@@ -23,7 +23,7 @@ jobs:
       - name: Build the tagged Docker image
         run: docker build . --file Dockerfile --tag lanceschi/helix-editor-musl:${{steps.vars.outputs.tag}}        
       - name: Push the tagged Docker image
-        run: lanceschi/helix-editor-musl:${{steps.vars.outputs.tag}}        
+        run: docker push lanceschi/helix-editor-musl:${{steps.vars.outputs.tag}}        
       - name: Build the latest Docker image
         run: docker build . --file Dockerfile --tag lanceschi/helix-editor-musl:latest
       - name: Push the latest Docker image
