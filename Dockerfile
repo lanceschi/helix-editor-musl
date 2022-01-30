@@ -17,7 +17,8 @@ RUN \
 
 FROM alpine:3.15.0
 
-ENV VERSION=${VERSION:-v0.6.0}
+ARG VERSION
+ENV PATH=/helix-${VERSION}:"$PATH"
 WORKDIR "/helix-${VERSION}"
 
 COPY --from=builder /helix/runtime ./runtime

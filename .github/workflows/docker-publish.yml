@@ -17,10 +17,16 @@ jobs:
         run: echo ${{ secrets.dockerhub_token }} | docker login -u ${{ secrets.dockerhub_username }} --password-stdin
       - name: Get the version
         id: vars
-        run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
+        run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10} | sed 's/^\///;s/\//-/' )
       - name: Print the version
         run: echo ${{steps.vars.outputs.tag}}
+      - name: Build the tagged Docker image
+        run: docker build . --file Dockerfile --tag lanceschi/helix-editor-musl:${{steps.vars.outputs.tag}}        
+      - name: Push the tagged Docker image
+        run: lanceschi/helix-editor-musl:${{steps.vars.outputs.tag}}        
       - name: Build the latest Docker image
         run: docker build . --file Dockerfile --tag lanceschi/helix-editor-musl:latest
       - name: Push the latest Docker image
         run: docker push lanceschi/helix-editor-musl:latest
+      - name: Logout from DockerHub Registry
+        run: docker logout && rm ~/.docker/config.json

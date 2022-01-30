@@ -9,3 +9,6 @@ https://github.com/rust-lang/rust/issues/34987
 
 ### Verbose logging
 https://github.com/helix-editor/helix/issues/1028#issuecomment-971178090
+
+### Docker build with github
+https://www.prestonlamb.com/blog/creating-a-docker-image-with-github-actions
